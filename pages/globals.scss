@@ -1,10 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500&display=swap');
+/*font-family: 'Montserrat'*/
+
+:root {
+	--primary: #3DB2FF;
+  --secondary: #4a248b;
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    scroll-behavior: smooth;
+  font-family: 'Montserrat', sans-serif;
+  scroll-behavior: smooth;
+  background: url("/background.png") fixed;
+  background-size: cover;
+  color: white;
 }
 
 a {
@@ -15,3 +25,18 @@ a {
 * {
   box-sizing: border-box;
 }
+
+button{
+  cursor: pointer;
+}
+
+ul{
+  margin: 0;
+  padding: 0;
+}
+
+
+
+
+
+

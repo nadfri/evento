@@ -1,11 +1,15 @@
 .Layout {
   display: flex;
   flex-direction: column;
-  min-height: 110vh;
+  min-height: 100vh;
+
 
   main {
     flex: 1;
     width: 100%;
+    max-width: 1100px;
     margin: auto;
+    padding: 5px;
+    z-index: 1;
   }
 }

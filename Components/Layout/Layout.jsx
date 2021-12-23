@@ -1,22 +1,25 @@
 /*Librairies*/
-import React from 'react';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import BackgroundAnim from "../BackGroundAnim/BackgroundAnim";
+import Header from "../Header/Header";
 
 /*Components*/
 
-/*CSS*/ 
-import styles from './Layout.module.scss';
-
+/*CSS*/
+import styles from "./Layout.module.scss";
 
 export default function Layout({ children }) {
+  return (
+    <div className={styles.Layout}>
+      <Header />
+      <main>{children}</main>
 
-	return (
-		<div className={styles.Layout}>
 
-			<main>{children}</main>
 
-			<ToastContainer />
-		</div>
-	);
+      <ToastContainer />
+	  <BackgroundAnim/>
+    </div>
+  );
 }
