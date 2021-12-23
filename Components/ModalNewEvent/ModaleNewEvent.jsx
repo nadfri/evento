@@ -64,9 +64,7 @@ export default function ModaleNewEvent({ close }) {
 
         <button>Envoyer</button>
 
-        <div className={styles.close} onClick={closeModal}>
-          ✕
-        </div>
+        <div className={styles.close} onClick={closeModal}>+</div>
       </form>
     </div>
   );

@@ -3,6 +3,9 @@
   position: fixed;
   inset: 0;
   overflow: hidden;
+  background: url("/background.png") fixed;
+  background-size: cover;
+  z-index: -1;
 
 
   li {
@@ -14,6 +17,7 @@
     background-color: #683ab73b;
     animation: animate 50s linear infinite;
     bottom: -150px;
+    border-radius: 20px;
   }
 
   li:nth-child(1) {
@@ -101,8 +105,7 @@
   }
 
   100% {
-    transform: translateY(-1000px) rotate(720deg);
-    opacity: 0.1;
-    border-radius: 50%;
+    transform: translateY(-1100px) rotate(720deg);
+    opacity: 0.2;
   }
 }

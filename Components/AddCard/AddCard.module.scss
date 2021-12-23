@@ -26,13 +26,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: var(--secondary);
     border-radius: 50%;
-    border: none;
+    border: solid 1px var(--secondary);
     font-size: 3rem;
     width: 80px;
     height: 80px;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: transparent;
     transition: all 0.5s;
     will-change: transform;
   }

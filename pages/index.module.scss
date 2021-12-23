@@ -1,9 +1,48 @@
-.Index {
-
+.Index{
+  overflow-x: hidden;
 }
+
+.Index h1 {
+  font-style: italic;
+  font-weight: 500;
+  position: relative;
+  width:fit-content;
+  margin-left: 20px;
+  &:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    background-color: white;
+    width: 0%;
+    height: 2px;
+    transition: all 0.5s ease;
+    animation: underline 1s forwards;
+  }
+}
+
+
 .containerCard {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
+  animation: translate200px 1s forwards;
+}
+
+@keyframes underline{
+  to{
+    width: 100%;
+  }
+}
+
+@keyframes translate200px{
+  from {
+    transform: translate(200px);
+    opacity: 0;
+  }
+  
+  to {
+    transform: translate(0);
+    opacity: 1;
+  }
 }

@@ -18,7 +18,7 @@ export default function Index() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1>Vos Événement</h1>
+      <h1>Prochains Événements</h1>
       <div className={styles.containerCard}>
         <Card />
         <Card />
@@ -28,8 +28,8 @@ export default function Index() {
         <Card />
         <Card />
         <AddCard open={openModal}/>
-        {modal && <ModaleNewEvent close={closeModal} />}
       </div>
+        {modal && <ModaleNewEvent close={closeModal} />}
     </div>
   );
 }

@@ -6,7 +6,7 @@ export default function Header() {
   return (
     <header className={styles.Header}>
       <Link href="/">
-        <a className={styles.logo}>EVENTO</a>
+        <a className={styles.logo}>EVENTO<span>byStockoss</span></a>
       </Link>
     </header>
   );
