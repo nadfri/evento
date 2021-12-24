@@ -65,7 +65,7 @@ export async function getStaticProps() {
 		props: {
 			events: JSON.parse(JSON.stringify(events)),
 		},
-		//revalidate: 3600, //refait un built toutes les heures
+		revalidate: 60, //refait un build chaque minute
 	};
 
 
