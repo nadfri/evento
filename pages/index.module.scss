@@ -1,15 +1,15 @@
-.Index{
-  overflow-x: hidden;
+.Index {
+  overflow: hidden;
 }
 
 .Index h1 {
   font-style: italic;
   font-weight: 500;
   position: relative;
-  width:fit-content;
+  width: fit-content;
   margin-left: 20px;
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0;
     background-color: white;
@@ -20,7 +20,6 @@
   }
 }
 
-
 .containerCard {
   display: flex;
   justify-content: center;
@@ -29,20 +28,28 @@
   animation: translate200px 1s forwards;
 }
 
-@keyframes underline{
-  to{
+@keyframes underline {
+  to {
     width: 100%;
   }
 }
 
-@keyframes translate200px{
+@keyframes translate200px {
   from {
     transform: translate(200px);
     opacity: 0;
   }
-  
+
   to {
     transform: translate(0);
     opacity: 1;
+  }
+}
+
+/*Media queries*/
+@media (max-width: 600px) {
+  .Index h1 {
+    font-size: 1.2rem;
+    margin: 10px auto;
   }
 }

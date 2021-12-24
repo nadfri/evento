@@ -24,8 +24,16 @@ a {
   box-sizing: border-box;
 }
 
+
+
 button{
   cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  transition: all 0.3s;
+  
+  &:active{
+    transform: translateY(1px);
+  }
 }
 
 ul{

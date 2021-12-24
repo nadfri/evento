@@ -48,4 +48,24 @@
   font-size: 1rem;
   font-weight: 500;
 }
+
+/*Media queries*/
+@media (max-width: 600px) {
+  .Card{
+    width: 200px;
+    height: 200px;
+  }
+
+  .titleCard {
+    font-size: 1.1rem;
+  }
+  
+  .dateCard{
+    font-size: 1.1rem;
+  }
+  
+  .timeCard{
+    font-size: 1rem;
+  }
+}
   

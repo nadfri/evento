@@ -26,7 +26,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: var(--secondary);
+    color: white ;
     border-radius: 50%;
     border: solid 1px var(--secondary);
     font-size: 3rem;
@@ -41,3 +41,12 @@
     transform: rotate(180deg) scale(1.5);
   }
 }
+
+/*Media queries*/
+@media (max-width: 600px) {
+  .AddCard{
+    width: 200px;
+    height: 200px;
+  }
+}
+
