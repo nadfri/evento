@@ -191,6 +191,11 @@
   .form textarea {
     height: 100px;
   }
+}
 
-
+/*Mozilla*/
+@-moz-document url-prefix() {
+  .ModaleNewEvent {
+      background-color: rgba(0, 0, 0, 0.9);
+  }
 }

@@ -1,4 +1,7 @@
+/*Librairies*/
 import React, { useRef, useState } from "react";
+
+/*CSS*/
 import styles from "./ModalNewEvent.module.scss";
 
 export default function ModaleNewEvent({ close }) {
@@ -16,13 +19,11 @@ export default function ModaleNewEvent({ close }) {
   const [email, setEmail] = useState("");
   const [organisateur, setOrganisateur] = useState("");
   const [description, setDescription] = useState("");
-  const dateNow = new Date().toISOString().split("T")[0];
 
   /*Submit*/
   const handleSubmit = (e) => {
     e.preventDefault();
   };
-
 
   return (
     <div className={styles.ModaleNewEvent} ref={modalRef}>
@@ -39,7 +40,6 @@ export default function ModaleNewEvent({ close }) {
               onChange={(e) => setDate(e.target.value)}
               type="date"
               id="date"
-              min={dateNow}
               required
             />
           </div>
@@ -62,6 +62,7 @@ export default function ModaleNewEvent({ close }) {
             value={titre}
             onChange={(e) => setTitre(e.target.value)}
             type="text"
+            maxLength={60}
             placeholder=" "
             id="titre"
             autoComplete="off"
