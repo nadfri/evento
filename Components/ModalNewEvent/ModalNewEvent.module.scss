@@ -135,23 +135,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
-  font-size: 2rem;
-  font-weight: bold;
-  color: #8e4cff;
-  cursor: pointer;
- 
-
+  
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: #683ab747;
   width: 30px;
   height: 30px;
   transition: all 0.3s;
-  transform: rotate(45deg);
+  
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 
 .close:hover {
-  transform: rotate(135deg);
+  transform: rotate(90deg);
+  background-color: var(--secondary);
 }
 
 /* Animation */
@@ -174,7 +171,6 @@
 
     input, textarea{
       margin-bottom: 5px;
-      // padding: 10px;
     }
   }
 

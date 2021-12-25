@@ -16,6 +16,8 @@
 }
 
 .Header button {
+  display: flex;
+  align-items: center;
   background-color: transparent;
   border: 1px solid var(--secondary);
   border-radius: 5px;
@@ -36,16 +38,40 @@
     hsla(0, 0%, 100%, 0.03) 60%
   );
 
-  &:hover {
-    color: var(--primary);
+  svg {
+    transition: all 0.3s;
   }
 
-  span {
-    display: inline-block;
-    background-color: #683ab788;
-    width: 25px;
-    border-radius: 5px;
+  &:hover svg {
+    transform: rotate(90deg);
   }
+}
+
+.icon {
+  font-size: 1.5rem;
+  border-radius: 5px;
+  background-color: #683ab78a;
+  padding: 5px;
+  margin-left: 5px;
+}
+
+.iconFixed {
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  right: 5px;
+  font-size: 3rem;
+  z-index: 1;
+  border-radius: 50%;
+  padding: 10px;
+  border-top: 1px solid hsla(0, 0%, 100%, 0.1);
+  border-left: 1px solid hsla(0, 0%, 100%, 0.1);
+  background-color: #683ab73b;
+  background-image: linear-gradient(
+    133deg,
+    hsla(0, 0%, 100%, 0.1) 16%,
+    hsla(0, 0%, 100%, 0.03) 60%
+  );
 }
 
 /*Media queries*/
@@ -55,11 +81,10 @@
   }
 
   .Header button {
-    font-size: 1.1rem;
-    padding: 2px 5px;
+    display: none;
+  }
 
-    span{
-      display: none;
-    }
+  .iconFixed {
+    display: block;
   }
 }

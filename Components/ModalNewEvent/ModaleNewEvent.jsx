@@ -1,6 +1,6 @@
 /*Librairies*/
 import React, { useRef, useState } from "react";
-
+import {IoClose} from "react-icons/io5";
 /*CSS*/
 import styles from "./ModalNewEvent.module.scss";
 
@@ -122,7 +122,7 @@ export default function ModaleNewEvent({ close }) {
         <button>Envoyer</button>
 
         <div className={styles.close} onClick={closeModal}>
-          +
+        <IoClose/>
         </div>
       </form>
     </div>
