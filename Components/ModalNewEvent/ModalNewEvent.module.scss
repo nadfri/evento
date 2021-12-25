@@ -12,6 +12,7 @@
   transition: all 0.5s ease-in-out;
 
   z-index: 1;
+
 }
 
 .gridInput {
@@ -51,6 +52,8 @@
   position: relative;
 }
 
+
+
 .form {
   input,
   textarea {
@@ -65,6 +68,7 @@
     background-color: transparent;
     color: white;
     font-size: 1rem;
+    text-transform: capitalize;
   }
 
   textarea {
@@ -76,6 +80,10 @@
     background-color: #683ab73b;
     border: solid 1px #683ab73b;
   }
+
+#titre,#organisateur{
+  text-transform: capitalize;
+}
 
   label {
     position: relative;
