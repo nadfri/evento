@@ -76,10 +76,12 @@ export default function ModaleNewEvent({ close }) {
 
     if (!response.ok) {
       setErrorAPI(data.message || "Erreur API");
-      setIsLoading(false);
-      setIsFailed(true);
       toastNotify("error");
-    } else {
+      setIsLoading(false);
+      console.log(data.message || "Erreur API");
+    } 
+    
+    else {
       toastNotify("success");
       //redirect to new event
       router.replace(`/${formData.slug}/${data.newEvent._id}`);

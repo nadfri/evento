@@ -41,7 +41,7 @@ export default function Index({ events }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   let events = [];
 
   try {
@@ -59,6 +59,5 @@ export async function getStaticProps() {
     props: {
       events: JSON.parse(JSON.stringify(events)),
     },
-    revalidate: 60, //refait un build chaque minute
   };
 }

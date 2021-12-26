@@ -14,6 +14,7 @@ import styles from "./event.module.scss";
 /*Utils*/
 import { connectToDB } from "../../helpers/mongodb";
 import { ObjectId } from "mongodb";
+import toastNotify from "../../helpers/toastNotify";
 
 export default function Event({ event }) {
 
@@ -82,9 +83,9 @@ export default function Event({ event }) {
   );
 }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const { params } = context;
-  console.log("context", context)
+  //console.log("context", context)
   let event;
 
   try {
@@ -98,32 +99,35 @@ export async function getStaticProps(context) {
     console.log("error", error);
   }
 
-  console.log("event",event)
+  if(!event) {
+    return {
+      notFound: true}
+    }
+
 
   return {
     props: {
       event: JSON.parse(JSON.stringify(event)),
-    },
-    revalidate: 60, //refait un build chaque minute
+    }
   };
 }
 
-export async function getStaticPaths() {
-  let events = [];
+// export async function getStaticPaths() {
+//   let events = [];
 
-  try {
-    //Connection à MongoDb
-    const client = await connectToDB();
-    //Connexion à la base de données
-    const db = client.db();
-    //Récupération des events
-    events = await db.collection("events").find().toArray();
-  } catch (error) {
-    console.log("error", error);
-  }
+//   try {
+//     //Connection à MongoDb
+//     const client = await connectToDB();
+//     //Connexion à la base de données
+//     const db = client.db();
+//     //Récupération des events
+//     events = await db.collection("events").find().toArray();
+//   } catch (error) {
+//     console.log("error", error);
+//   }
 
-  return {
-    paths: events.map(event=> `/${event.slug}/${event._id}`),
-    fallback: false,
-  };
-}
+//   return {
+//     paths: events.map(event=> `/${event.slug}/${event._id}`),
+//     fallback: false,
+//   };
+// }

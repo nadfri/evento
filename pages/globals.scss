@@ -42,7 +42,6 @@ ul {
 .Toastify__toast-theme--colored.Toastify__toast--success,
 .Toastify__toast-theme--colored.Toastify__toast--error {
   width: fit-content;
-  padding: 10px;
   font-size: 1.3rem;
   width: 400px;
   text-align: center;
@@ -57,7 +56,7 @@ ul {
 }
 
 .Toastify__toast-theme--colored.Toastify__toast--success {
-  background-color: #4a248b59;
+  background-color: #4caf5063;
 }
 .Toastify__toast-theme--colored.Toastify__toast--error {
   background-color: #ff00053b;
