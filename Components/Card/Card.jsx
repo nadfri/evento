@@ -2,7 +2,7 @@
 import React from "react";
 import moment from "moment";
 import Link from "next/link";
-import slugify from 'react-slugify';
+
 
 /*CSS*/
 import styles from "./Card.module.scss";
@@ -18,7 +18,7 @@ export default function Card({ event }) {
   }
 
   return (
-    <Link href={`/${slugify(event.titre)}`}>
+    <Link href={`/${event.slug}/${event._id}`}>
       <a>
         <div className={styles.Card}>
           <div className={styles.titleCard}>{event.titre}</div>

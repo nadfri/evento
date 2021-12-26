@@ -2,11 +2,11 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import slugify from "react-slugify";
-import { toast } from 'react-toastify';
 
 /*Components*/
 import { IoClose } from "react-icons/io5";
 import { BiLoaderAlt } from "react-icons/bi";
+import toastNotify from "../../helpers/toastNotify";
 
 /*CSS*/
 import styles from "./ModalNewEvent.module.scss";
@@ -15,12 +15,12 @@ import Loader from "../Loader/Loader";
 export default function ModaleNewEvent({ close }) {
   const modalRef = useRef(null);
   const router = useRouter();
-  const toastId = "toastId";
 
   const closeModal = () => {
     modalRef.current.style.opacity = 0;
     setTimeout(() => close(), 500);
   };
+
 
   /*State*/
   const [date, setDate] = useState("");
@@ -31,13 +31,13 @@ export default function ModaleNewEvent({ close }) {
   const [description, setDescription] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [errorAPI, setErrorAPI] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [isFailed, setIsFailed] = useState(false);
 
-  /*Detect route changin, launch loader*/
+
+  /*Detect route changing, launch loader*/
   useEffect(() => {
     const handleRouteChange = () => {
       setIsLoading(false);
+      closeModal();
     };
 
     router.events.on("routeChangeComplete", handleRouteChange);
@@ -73,17 +73,16 @@ export default function ModaleNewEvent({ close }) {
     });
 
     const data = await response.json();
+
     if (!response.ok) {
       setErrorAPI(data.message || "Erreur API");
       setIsLoading(false);
       setIsFailed(true);
+      toastNotify("error");
     } else {
-      console.log(data.message);
-      // setIsLoading(false);
-      setIsSuccess(true);
-      closeModal();
-      //redirect to slug
-      router.replace(`/${formData.slug}`);
+      toastNotify("success");
+      //redirect to new event
+      router.replace(`/${formData.slug}/${data.newEvent._id}`);
     }
   };
 
@@ -193,29 +192,6 @@ export default function ModaleNewEvent({ close }) {
         </div>
       </form>
       {isLoading && <Loader />}
-
-      {isSuccess &&
-        toast.success("Événement ajouté!", {
-          position: "bottom-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          theme: "colored",
-          toastId,
-        })}
-      {isFailed &&
-        toast.error("Erreur API, Veuillez réessayer...", {
-          position: "bottom-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          theme: "colored",
-          toastId,
-        })}
     </div>
   );
 }

@@ -2,19 +2,21 @@
 import React, {useState} from "react";
 import Head from "next/head";
 import moment from "moment";
-import { IoTimerSharp } from "react-icons/io5";
-import { FaCommentDots } from "react-icons/fa";
 
 /*Components*/
 import ModaleNewComment from "../../Components/ModalNewComment/ModalNewComment";
+import { IoTimerSharp } from "react-icons/io5";
+import { FaCommentDots } from "react-icons/fa";
 
 /*CSS*/
 import styles from "./event.module.scss";
 
 /*Utils*/
 import { connectToDB } from "../../helpers/mongodb";
+import { ObjectId } from "mongodb";
 
 export default function Event({ event }) {
+
 	const [modal, setModal] = useState(false);
   const openModal = () => setModal(true);
   const closeModal = () => setModal(false);
@@ -82,6 +84,7 @@ export default function Event({ event }) {
 
 export async function getStaticProps(context) {
   const { params } = context;
+  console.log("context", context)
   let event;
 
   try {
@@ -90,10 +93,12 @@ export async function getStaticProps(context) {
     //Connexion à la base de données
     const db = client.db();
     //Récupération de l'event
-    event = await db.collection("events").findOne({ slug: params.event });
+    event = await db.collection("events").findOne({ _id: ObjectId(params.id) });
   } catch (error) {
     console.log("error", error);
   }
+
+  console.log("event",event)
 
   return {
     props: {
@@ -104,27 +109,21 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  let paths = [];
+  let events = [];
 
   try {
     //Connection à MongoDb
     const client = await connectToDB();
     //Connexion à la base de données
     const db = client.db();
-    //Récupération des projets
-    paths = await db.collection("events").find().toArray();
+    //Récupération des events
+    events = await db.collection("events").find().toArray();
   } catch (error) {
     console.log("error", error);
   }
 
   return {
-    paths: paths.map((event) => {
-      return {
-        params: {
-          event: event.slug,
-        },
-      };
-    }),
+    paths: events.map(event=> `/${event.slug}/${event._id}`),
     fallback: false,
   };
 }

@@ -47,7 +47,7 @@ export default async function handler(req, res) {
 
 		//Succes
 		clientMongoDB.close();
-		res.status(201).json({ message: 'Evenement ajouté avec succès!', event: newEvent });
+		res.status(201).json({ message: 'Evenement ajouté avec succès!', newEvent });
 	}
 
   res.status(405).json({ message: 'Méthode non autorisée' });
