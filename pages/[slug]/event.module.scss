@@ -76,6 +76,7 @@
 
   .auteur {
     font-style: italic;
+    text-transform: capitalize;
   }
 
   .violet {
@@ -110,7 +111,7 @@
 
     svg {
       margin-left: 10px;
-      transition: all 0.3s;
+      transition: all 0.5s;
     }
 
     &:hover svg {

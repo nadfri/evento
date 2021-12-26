@@ -20,6 +20,8 @@ export default async function handler(req, res) {
 			description: req.body.description,
 		};
 
+		console.log(newEvent.date);
+
 		//Connexion à la base de données
 		let clientMongoDB;
 		try {

@@ -48,7 +48,6 @@ export default function ModaleNewEvent({ close }) {
   /*Submit*/
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     setIsLoading(true);
     setErrorAPI(null);
 
@@ -68,15 +67,15 @@ export default function ModaleNewEvent({ close }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(formData),
-    });
+    }).catch((err) => {console.log(err)});
 
-    const data = await response.json();
+    const data = await response?.json() || null;
 
-    if (!response.ok) {
-      setErrorAPI(data.message || "Erreur API");
+    if (!response || !response.ok) {
+      setErrorAPI(data?.message || "Erreur API");
+      console.log(data?.message || "Erreur API");
       toastNotify("error");
       setIsLoading(false);
-      console.log(data.message || "Erreur API");
     } else {
       toastNotify("success");
       router.replace(`/`);
@@ -102,14 +101,14 @@ export default function ModaleNewEvent({ close }) {
             />
           </div>
           <div className={styles.container_Input}>
-            <label htmlFor="date">
+            <label htmlFor="time">
               <span>Heure</span>
             </label>
             <input
               value={time}
               onChange={(e) => setTime(e.target.value)}
               type="time"
-              id="heure"
+              id="time"
               required
             />
           </div>
@@ -121,6 +120,7 @@ export default function ModaleNewEvent({ close }) {
             onChange={(e) => setTitre(e.target.value)}
             type="text"
             maxLength={60}
+            minLength={3}
             placeholder=" "
             id="titre"
             autoComplete="off"
@@ -141,6 +141,7 @@ export default function ModaleNewEvent({ close }) {
               id="organisateur"
               autoComplete="off"
               minLength={3}
+              maxLength={20}
               required
             />
             <label htmlFor="organisateur">

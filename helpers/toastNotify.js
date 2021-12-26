@@ -5,8 +5,8 @@ export default function toastNotify( type ) {
 
   if (type === "success")
     return toast.success("Événement ajouté!", {
-      position: "top-center",
-      autoClose: 5000,
+      position: "bottom-right",
+      autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: false,
@@ -16,7 +16,7 @@ export default function toastNotify( type ) {
     });
   else
     return toast.error("Erreur API, Veuillez réessayer...", {
-      position: "top-center",
+      position: "bottom-right",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
