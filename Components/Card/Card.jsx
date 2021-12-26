@@ -3,15 +3,14 @@ import React from "react";
 import moment from "moment";
 import Link from "next/link";
 
-
 /*CSS*/
 import styles from "./Card.module.scss";
 
 export default function Card({ event }) {
   const date = moment(event.date).format("DD/MM/YYYY");
-  const time = moment(event.date).format("HH:mm");
-  let backgroundColor = "";
+  const time = moment(event.date).add(-1, "hours").format("HH:mm");
 
+  let backgroundColor = "";
 
   if (moment(event.date) < moment().add(10, "days")) {
     backgroundColor = "#b73a3a3b";
@@ -35,4 +34,3 @@ export default function Card({ event }) {
     </Link>
   );
 }
-

@@ -4,7 +4,7 @@ export default function toastNotify( type ) {
   const toastId = "customID";
 
   if (type === "success")
-    return toast.success("Événement ajouté!", {
+    return toast.success("Ajouté avec succès!", {
       position: "bottom-right",
       autoClose: 3000,
       hideProgressBar: false,

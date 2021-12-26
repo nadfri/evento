@@ -8,7 +8,7 @@ import { BiLoaderAlt } from "react-icons/bi";
 import toastNotify from "../../helpers/toastNotify";
 
 /*CSS*/
-import styles from "../ModalNewEvent/ModalNewEvent.module.scss"
+import styles from "../ModalNewEvent/ModalNewEvent.module.scss";
 
 export default function ModaleNewComment({ close }) {
   const modalRef = useRef(null);
@@ -45,23 +45,20 @@ export default function ModaleNewComment({ close }) {
       body: JSON.stringify(formData),
     });
 
-    const data = await response?.json() ||null;
+    const data = (await response?.json()) || null;
 
-    if (!response || !response.ok)  {
+    if (!response || !response.ok) {
       setErrorAPI(data?.message || "Erreur API");
       console.log(data?.message || "Erreur API");
       toastNotify("error");
       setIsLoading(false);
-
     } else {
-      console.log(data.newComment)
       closeModal();
       toastNotify("success");
-      //Reload only if the comment is added
-      router.replace(router.asPath);
+      //Refresh data
+      router.push(`/${router.query.slug}/${router.query.id}`);
+      
     }
-
-    
   };
 
   return (
