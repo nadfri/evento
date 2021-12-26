@@ -72,6 +72,7 @@
 
   textarea {
     resize: none;
+    min-height: 100px;
   }
 
   input:focus,
@@ -93,6 +94,9 @@
   }
 
   button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 15px;
     border: solid 1px var(--secondary);
     border-radius: 20px;
@@ -102,10 +106,20 @@
     font-size: 1.2rem;
     transition: all 0.3s;
 
+    svg{
+      font-size: 1.5rem;
+      margin-left:10px;
+      animation: rotateInfinite 0.5s linear infinite;
+    }
+
     &:hover {
       background-color: #683ab73b;
       border: 1px solid #683ab73b;
       color: white;
+    }
+
+    &:disabled{
+      background-color: #80808030;
     }
   }
 }
@@ -165,6 +179,15 @@
   }
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes rotateInfinite {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 

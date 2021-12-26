@@ -1,11 +1,18 @@
 /*Librairies*/
 import React, { useRef, useState } from "react";
+import { useRouter } from 'next/router';
+import slugify from 'react-slugify';
+
+/*Components*/
 import {IoClose} from "react-icons/io5";
+import {BiLoaderAlt} from "react-icons/bi";
+
 /*CSS*/
 import styles from "./ModalNewEvent.module.scss";
 
 export default function ModaleNewEvent({ close }) {
   const modalRef = useRef(null);
+  const router = useRouter();
 
   const closeModal = () => {
     modalRef.current.style.opacity = 0;
@@ -19,10 +26,49 @@ export default function ModaleNewEvent({ close }) {
   const [email, setEmail] = useState("");
   const [organisateur, setOrganisateur] = useState("");
   const [description, setDescription] = useState("");
+  const [isLoading, setisLoading] = useState(false);
+  const [errorAPI, setErrorAPI] = useState(false);
 
   /*Submit*/
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setIsLoading(true);
+		setErrorAPI(null);
+
+    const formData = {
+      titre,
+      slug: slugify(titre),
+      date,
+      time,
+      email,
+      organisateur,
+      description,
+    }
+
+    console.log(new Date(date + "T" + time))
+   
+
+
+		const response = await fetch('/api/newEvent', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(formData),
+		});
+
+		const data = await response.json();
+		if (!response.ok) {
+			setErrorAPI(data.message || 'Erreur API');
+			setLoading(false);
+		} else {
+			console.log(data.message);
+			setLoading(false);
+
+			//redirect to slug
+			router.replace(`/${formData.slug}`);
+		}
   };
 
   return (
@@ -110,7 +156,6 @@ export default function ModaleNewEvent({ close }) {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             id="description"
-            rows="10"
             placeholder=" "
             maxLength="300"
           />
@@ -119,7 +164,11 @@ export default function ModaleNewEvent({ close }) {
           </label>
         </div>
 
-        <button>Envoyer</button>
+        {isLoading ? (
+					<button disabled>Ajout en cours <BiLoaderAlt/></button>
+				) : (
+					<button>Ajouter</button>
+				)}
 
         <div className={styles.close} onClick={closeModal}>
         <IoClose/>
