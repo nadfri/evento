@@ -35,6 +35,7 @@ export default function ModaleNewEvent({ close }) {
   useEffect(() => {
     const handleRouteChange = () => {
       setIsLoading(false);
+      closeModal();
     };
 
     router.events.on("routeChangeComplete", handleRouteChange);
@@ -78,9 +79,7 @@ export default function ModaleNewEvent({ close }) {
       console.log(data.message || "Erreur API");
     } else {
       toastNotify("success");
-      //redirect to new event
-      closeModal();
-      router.replace(`/${formData.slug}/${data.newEvent._id}`);
+      router.replace(`/`);
     }
   };
 
