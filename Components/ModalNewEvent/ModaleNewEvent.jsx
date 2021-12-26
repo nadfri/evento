@@ -21,7 +21,6 @@ export default function ModaleNewEvent({ close }) {
     setTimeout(() => close(), 500);
   };
 
-
   /*State*/
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
@@ -32,12 +31,10 @@ export default function ModaleNewEvent({ close }) {
   const [isLoading, setIsLoading] = useState(false);
   const [errorAPI, setErrorAPI] = useState(false);
 
-
   /*Detect route changing, launch loader*/
   useEffect(() => {
     const handleRouteChange = () => {
       setIsLoading(false);
-      closeModal();
     };
 
     router.events.on("routeChangeComplete", handleRouteChange);
@@ -79,11 +76,10 @@ export default function ModaleNewEvent({ close }) {
       toastNotify("error");
       setIsLoading(false);
       console.log(data.message || "Erreur API");
-    } 
-    
-    else {
+    } else {
       toastNotify("success");
       //redirect to new event
+      closeModal();
       router.replace(`/${formData.slug}/${data.newEvent._id}`);
     }
   };

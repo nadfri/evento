@@ -14,7 +14,7 @@ import styles from "./event.module.scss";
 /*Utils*/
 import { connectToDB } from "../../helpers/mongodb";
 import { ObjectId } from "mongodb";
-import toastNotify from "../../helpers/toastNotify";
+
 
 export default function Event({ event }) {
 
