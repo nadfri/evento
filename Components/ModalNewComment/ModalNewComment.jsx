@@ -55,9 +55,8 @@ export default function ModaleNewComment({ close }) {
     } else {
       closeModal();
       toastNotify("success");
-      //Refresh data
-      router.push(`/${router.query.slug}/${router.query.id}`);
-      
+      //Reload only if the comment is added
+      router.replace(router.asPath);
     }
   };
 

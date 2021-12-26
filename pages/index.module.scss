@@ -1,5 +1,42 @@
 .Index {
   overflow: hidden;
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+  }
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 50px;
+  font-size: 2.2rem;
+  border-radius: 5px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+
+  background-color: #683ab73b;
+  background-image: linear-gradient(
+    133deg,
+    rgba(255, 255, 255, 0.1) 16%,
+    rgba(255, 255, 255, 0.03) 60%
+  );
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    color: #a26bff;
+  }
+
+  &.iconRotate {
+    transform: rotate(-180deg);
+
+  }
 }
 
 .Index h1 {
@@ -7,7 +44,7 @@
   font-weight: 500;
   position: relative;
   width: fit-content;
-  margin-left: 20px;
+
   &:before {
     content: "";
     position: absolute;
@@ -48,8 +85,16 @@
 
 /*Media queries*/
 @media (max-width: 600px) {
+  .Index header{
+    padding: 0 ;
+  }
   .Index h1 {
     font-size: 1.2rem;
-    margin: 10px auto;
+  }
+
+  .icon{
+    font-size: 1.5rem;
+    height: 40px;
+    width: 40px;
   }
 }
