@@ -1,18 +1,21 @@
 /*Librairies*/
-import React, { useRef, useState } from "react";
-import { useRouter } from 'next/router';
-import slugify from 'react-slugify';
+import React, { useRef, useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import slugify from "react-slugify";
+import { toast } from 'react-toastify';
 
 /*Components*/
-import {IoClose} from "react-icons/io5";
-import {BiLoaderAlt} from "react-icons/bi";
+import { IoClose } from "react-icons/io5";
+import { BiLoaderAlt } from "react-icons/bi";
 
 /*CSS*/
 import styles from "./ModalNewEvent.module.scss";
+import Loader from "../Loader/Loader";
 
 export default function ModaleNewEvent({ close }) {
   const modalRef = useRef(null);
   const router = useRouter();
+  const toastId = "toastId";
 
   const closeModal = () => {
     modalRef.current.style.opacity = 0;
@@ -26,15 +29,30 @@ export default function ModaleNewEvent({ close }) {
   const [email, setEmail] = useState("");
   const [organisateur, setOrganisateur] = useState("");
   const [description, setDescription] = useState("");
-  const [isLoading, setisLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [errorAPI, setErrorAPI] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isFailed, setIsFailed] = useState(false);
+
+  /*Detect route changin, launch loader*/
+  useEffect(() => {
+    const handleRouteChange = () => {
+      setIsLoading(false);
+    };
+
+    router.events.on("routeChangeComplete", handleRouteChange);
+
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router.events]);
 
   /*Submit*/
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     setIsLoading(true);
-		setErrorAPI(null);
+    setErrorAPI(null);
 
     const formData = {
       titre,
@@ -44,31 +62,29 @@ export default function ModaleNewEvent({ close }) {
       email,
       organisateur,
       description,
+    };
+
+    const response = await fetch("/api/newEvent", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      setErrorAPI(data.message || "Erreur API");
+      setIsLoading(false);
+      setIsFailed(true);
+    } else {
+      console.log(data.message);
+      // setIsLoading(false);
+      setIsSuccess(true);
+      closeModal();
+      //redirect to slug
+      router.replace(`/${formData.slug}`);
     }
-
-    console.log(new Date(date + "T" + time))
-   
-
-
-		const response = await fetch('/api/newEvent', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(formData),
-		});
-
-		const data = await response.json();
-		if (!response.ok) {
-			setErrorAPI(data.message || 'Erreur API');
-			setLoading(false);
-		} else {
-			console.log(data.message);
-			setLoading(false);
-
-			//redirect to slug
-			router.replace(`/${formData.slug}`);
-		}
   };
 
   return (
@@ -165,15 +181,41 @@ export default function ModaleNewEvent({ close }) {
         </div>
 
         {isLoading ? (
-					<button disabled>Ajout en cours <BiLoaderAlt/></button>
-				) : (
-					<button>Ajouter</button>
-				)}
+          <button disabled>
+            Ajout en cours <BiLoaderAlt />
+          </button>
+        ) : (
+          <button>Ajouter</button>
+        )}
 
         <div className={styles.close} onClick={closeModal}>
-        <IoClose/>
+          <IoClose />
         </div>
       </form>
+      {isLoading && <Loader />}
+
+      {isSuccess &&
+        toast.success("Événement ajouté!", {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          theme: "colored",
+          toastId,
+        })}
+      {isFailed &&
+        toast.error("Erreur API, Veuillez réessayer...", {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          theme: "colored",
+          toastId,
+        })}
     </div>
   );
 }

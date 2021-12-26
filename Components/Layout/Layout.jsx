@@ -16,12 +16,10 @@ export default function Layout({ children }) {
     <div className={styles.Layout}>
       <Header />
       <main>{children}</main>
-      <Footer/>
-
-
+      <Footer />
 
       <ToastContainer />
-	  <BackgroundAnim/>
+      <BackgroundAnim />
     </div>
   );
 }

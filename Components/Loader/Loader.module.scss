@@ -1,0 +1,20 @@
+.Loader {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 2;
+	animation: fade 0.2s forwards;
+}
+
+/*keyframes*/
+@keyframes fade {
+
+	100% {
+		background-color: rgba(0, 0, 0, 0.5);
+	}
+}
