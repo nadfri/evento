@@ -4,8 +4,7 @@ import Link from "next/link";
 
 /*Components*/
 import ModaleNewEvent from "../ModalNewEvent/ModaleNewEvent";
-import {BsPlusLg} from "react-icons/bs";
-
+import { BsPlusLg } from "react-icons/bs";
 
 /*CSS*/
 import styles from "./Header.module.scss";
@@ -24,12 +23,11 @@ export default function Header() {
           </a>
         </Link>
         <button onClick={openModal}>
-          AJOUTER <BsPlusLg className={styles.icon}/>
+          AJOUTER <BsPlusLg className={styles.icon} />
         </button>
       </header>
-      <BsPlusLg className={styles.iconFixed} onClick={openModal}/>
+      <BsPlusLg className={styles.iconFixed} onClick={openModal} />
       {modal && <ModaleNewEvent close={closeModal} />}
-
     </>
   );
 }

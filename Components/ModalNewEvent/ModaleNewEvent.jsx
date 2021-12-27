@@ -29,23 +29,18 @@ export default function ModaleNewEvent({ close }) {
   const [organisateur, setOrganisateur] = useState("");
   const [description, setDescription] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [errorAPI, setErrorAPI] = useState(false);
 
-  /*Detect route changing, launch loader*/
+  /*Detect route changing, close modal*/
   useEffect(() => {
-    const handleRouteChange = () => {
-      closeModal();
-    };
 
-    router.events.on("routeChangeComplete", handleRouteChange);
-    return () => router.events.off("routeChangeComplete", handleRouteChange);
+    router.events.on("routeChangeComplete", closeModal);
+    return () => router.events.off("routeChangeComplete", closeModal);
   }, [router.events]);
 
   /*Submit*/
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    setErrorAPI(null);
 
     const formData = {
       titre,
@@ -70,7 +65,6 @@ export default function ModaleNewEvent({ close }) {
     const data = (await response?.json()) || null;
 
     if (!response || !response.ok) {
-      setErrorAPI(data?.message || "Erreur API");
       console.log(data?.message || "Erreur API");
       toastNotify("error");
       setIsLoading(false);

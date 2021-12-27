@@ -30,12 +30,11 @@
   cursor: pointer;
 
   &:hover {
-    color: #a26bff;
+    color: var(--primary);
   }
 
   &.iconRotate {
     transform: rotate(-180deg);
-
   }
 }
 
@@ -85,14 +84,14 @@
 
 /*Media queries*/
 @media (max-width: 600px) {
-  .Index header{
-    padding: 0 ;
+  .Index header {
+    padding: 0;
   }
   .Index h1 {
     font-size: 1.2rem;
   }
 
-  .icon{
+  .icon {
     font-size: 1.5rem;
     height: 40px;
     width: 40px;

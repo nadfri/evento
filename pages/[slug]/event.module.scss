@@ -28,7 +28,7 @@
       font-size: 1rem;
       transition: all 0.3s;
       &:hover {
-        color: #a26bff;
+        color: var(--primary);
       }
     }
   }
@@ -45,7 +45,7 @@
     }
   }
 
-  .light{
+  .light {
     position: absolute;
     top: 7px;
     left: 10px;
@@ -91,7 +91,7 @@
   }
 
   .violet {
-    color: #a26bff;
+    color: var(--primary);
   }
 
   .btnComment {
@@ -129,8 +129,6 @@
       transform: rotate(360deg);
     }
   }
-
-
 }
 
 /*Media queries*/
@@ -165,14 +163,14 @@
       padding: 5px;
     }
 
-    ul li{
+    ul li {
       margin: 10px 0px;
     }
 
     .btnComment {
       border-radius: 50%;
-      width:30px;
-      height:30px;
+      width: 30px;
+      height: 30px;
       padding: 0;
       justify-content: center;
       border-bottom: none;

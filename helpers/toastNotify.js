@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
 
-export default function toastNotify( type ) {
+export default function toastNotify(type) {
   const toastId = "customID";
 
   if (type === "success")

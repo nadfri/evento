@@ -1,18 +1,15 @@
 /*Components*/
-import Layout from '../Components/Layout/Layout';
-
+import Layout from "../Components/Layout/Layout";
 /*CSS*/
-import './globals.scss';
+import "./globals.scss";
 
 /*Point d'entrée de l'application*/
 function MyApp({ Component, pageProps }) {
-
-	return (
-		<Layout>
-			<Component {...pageProps} />
-		</Layout>
-	);
-
+  return (
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
+  );
 }
 
 export default MyApp;

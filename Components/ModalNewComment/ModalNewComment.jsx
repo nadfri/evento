@@ -23,13 +23,11 @@ export default function ModaleNewComment({ close }) {
   const [auteur, setAuteur] = useState("");
   const [commentaire, setCommentaire] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [errorAPI, setErrorAPI] = useState(false);
 
   /*Submit*/
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    setErrorAPI(null);
 
     const formData = {
       auteur,
@@ -48,14 +46,13 @@ export default function ModaleNewComment({ close }) {
     const data = (await response?.json()) || null;
 
     if (!response || !response.ok) {
-      setErrorAPI(data?.message || "Erreur API");
       console.log(data?.message || "Erreur API");
       toastNotify("error");
       setIsLoading(false);
     } else {
       closeModal();
       toastNotify("success");
-      //Reload only if the comment is added
+      //Reload when comment is added
       router.replace(router.asPath);
     }
   };

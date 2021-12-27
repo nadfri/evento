@@ -75,7 +75,7 @@ export async function getServerSideProps() {
   }
 
   /*Filtrage des events*/
-  events = events.filter((event) => moment(event.date).add(10,"days") > moment());
+  events = events.filter((event) => moment(event.date).add(10, "days") > moment());
 
   return {
     props: {
