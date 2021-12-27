@@ -12,9 +12,9 @@ export default function Card({ event }) {
 
   let backgroundColor = "";
 
-  if (moment(event.date) < moment().add(10, "days")) {
+  if (moment(event.date) < moment().add(10, "days") && moment(event.date) > moment()) {
     backgroundColor = "#b73a3a3b";
-  }
+  } else if (moment(event.date) < moment()) backgroundColor = "#808080bf";
 
   return (
     <Link href={`/${event.slug}/${event._id}`}>

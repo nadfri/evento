@@ -31,6 +31,8 @@ export default function ModaleNewEvent({ close }) {
   const [isLoading, setIsLoading] = useState(false);
   const [errorAPI, setErrorAPI] = useState(false);
 
+  console.log(router)
+
   /*Detect route changing, launch loader*/
   useEffect(() => {
     const handleRouteChange = () => {
@@ -78,7 +80,7 @@ export default function ModaleNewEvent({ close }) {
       setIsLoading(false);
     } else {
       toastNotify("success");
-      router.replace(`/`);
+      router.replace(router.asPath);
     }
   };
 

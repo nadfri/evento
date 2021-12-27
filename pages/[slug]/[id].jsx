@@ -1,5 +1,5 @@
 /*Librairies*/
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import moment from "moment";
 
@@ -15,19 +15,17 @@ import styles from "./event.module.scss";
 import { connectToDB } from "../../helpers/mongodb";
 import { ObjectId } from "mongodb";
 
-
 export default function Event({ event }) {
-
-	const [modal, setModal] = useState(false);
+  const [modal, setModal] = useState(false);
   const openModal = () => setModal(true);
   const closeModal = () => setModal(false);
   const date = moment(event.date).format("DD/MM/YYYY");
   const time = moment(event.date).format("HH:mm");
   let color = "";
 
-  if (moment(event.date) < moment().add(10, "days")) {
+  if (moment(event.date) < moment().add(10, "days") && moment(event.date) > moment()) {
     color = "#ff0000a1";
-  }
+  } else if (moment(event.date) < moment()) color = "#808080bf";
 
   const At = () => <span className={styles.violet}>@</span>;
 
@@ -78,7 +76,7 @@ export default function Event({ event }) {
           <FaCommentDots />
         </button>
       </div>
-			{modal &&<ModaleNewComment close={closeModal}/>}
+      {modal && <ModaleNewComment close={closeModal} />}
     </>
   );
 }
@@ -99,16 +97,16 @@ export async function getServerSideProps(context) {
     console.log("error", error);
   }
 
-  if(!event) {
+  if (!event) {
     return {
-      notFound: true}
-    }
-
+      notFound: true,
+    };
+  }
 
   return {
     props: {
       event: JSON.parse(JSON.stringify(event)),
-    }
+    },
   };
 }
 

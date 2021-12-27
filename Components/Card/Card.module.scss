@@ -13,7 +13,6 @@
   border-left: 1px solid hsla(0, 0%, 100%, 0.1);
   border-bottom: 1px solid hsla(0, 0%, 100%, 0.01);
 
-
   border-radius: 24px;
   background-image: linear-gradient(
     133deg,
@@ -24,7 +23,7 @@
   will-change: transform;
 
   cursor: pointer;
-
+  position: relative;
 
   &:hover {
     transform: scale(1.01);
@@ -36,32 +35,31 @@
   font-weight: 500;
   text-transform: capitalize;
   height: 50px;
-
 }
 
-.dateCard{
+.dateCard {
   font-size: 1.5rem;
-  background-color: #683ab73b;
+  background-color: #66e16b5c;
   border-radius: 10px;
   padding: 5px 20px;
 }
 
-.timeCard{
+.timeCard {
   font-size: 1.2rem;
 }
 
-.organizerCard{
+.organizerCard {
   font-size: 1rem;
   font-weight: 500;
   text-transform: capitalize;
-  span{
+  span {
     color: #a26bff;
-  };
+  }
 }
 
 /*Media queries*/
 @media (max-width: 600px) {
-  .Card{
+  .Card {
     width: 200px;
     height: 200px;
   }
@@ -70,13 +68,12 @@
     font-size: 1.1rem;
     height: 30px;
   }
-  
-  .dateCard{
+
+  .dateCard {
     font-size: 1.1rem;
   }
-  
-  .timeCard{
+
+  .timeCard {
     font-size: 1rem;
   }
 }
-  
