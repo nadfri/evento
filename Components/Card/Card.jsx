@@ -13,7 +13,7 @@ export default function Card({ event }) {
   let backgroundColor = "";
 
   if (moment(event.date) < moment().add(10, "days") && moment(event.date) > moment()) {
-    backgroundColor = "#b73a3a3b";
+    backgroundColor = "#b73a3a5c";
   } else if (moment(event.date) < moment()) backgroundColor = "#808080bf";
 
   return (

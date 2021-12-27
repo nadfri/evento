@@ -42,7 +42,7 @@ export default function Event({ event }) {
 
         <h2>
           <At />
-          {event.organisateur} <a href={`mailto:${event.email}`}>({event.email})</a>
+          <span>{event.organisateur}</span><a href={`mailto:${event.email}`}>({event.email})</a>
         </h2>
 
         <h3>
