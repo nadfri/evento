@@ -31,20 +31,15 @@ export default function ModaleNewEvent({ close }) {
   const [isLoading, setIsLoading] = useState(false);
   const [errorAPI, setErrorAPI] = useState(false);
 
-  console.log(router)
-
   /*Detect route changing, launch loader*/
   useEffect(() => {
     const handleRouteChange = () => {
-      setIsLoading(false);
-      closeModal();
+      //setIsLoading(false);
+       closeModal();
     };
 
     router.events.on("routeChangeComplete", handleRouteChange);
-
-    return () => {
-      router.events.off("routeChangeComplete", handleRouteChange);
-    };
+    return () => router.events.off("routeChangeComplete", handleRouteChange);
   }, [router.events]);
 
   /*Submit*/
@@ -69,9 +64,11 @@ export default function ModaleNewEvent({ close }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(formData),
-    }).catch((err) => {console.log(err)});
+    }).catch((err) => {
+      console.log(err);
+    });
 
-    const data = await response?.json() || null;
+    const data = (await response?.json()) || null;
 
     if (!response || !response.ok) {
       setErrorAPI(data?.message || "Erreur API");
@@ -80,7 +77,8 @@ export default function ModaleNewEvent({ close }) {
       setIsLoading(false);
     } else {
       toastNotify("success");
-      router.replace(router.asPath);
+      // closeModal();
+      router.replace(`/${formData.slug}/${data.newEvent._id}`);
     }
   };
 
