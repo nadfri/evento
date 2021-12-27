@@ -23,8 +23,9 @@ export default function Event({ event }) {
   const time = moment(event.date).format("HH:mm");
   let color = "";
 
+
   if (moment(event.date) < moment().add(10, "days") && moment(event.date) > moment()) {
-    color = "#ff0000a1";
+    {color = "#ff272796"}
   } else if (moment(event.date) < moment()) color = "#808080bf";
 
   const At = () => <span className={styles.violet}>@</span>;
@@ -75,6 +76,8 @@ export default function Event({ event }) {
           <span>Commenter</span>
           <FaCommentDots />
         </button>
+
+        <div className={styles.light} style={{backgroundColor : color}}></div>
       </div>
       {modal && <ModaleNewComment close={closeModal} />}
     </>

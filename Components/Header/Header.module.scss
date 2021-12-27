@@ -8,10 +8,16 @@
   font-size: 2.5rem;
   font-weight: bold;
   line-height: 1;
+  transition: all 0.7s;
 
   span {
     font-size: 9px;
     font-weight: normal;
+  }
+
+  &:hover {
+    text-shadow: 0 0 5px white;
+    color: ivory;
   }
 }
 

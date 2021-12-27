@@ -34,8 +34,7 @@ export default function ModaleNewEvent({ close }) {
   /*Detect route changing, launch loader*/
   useEffect(() => {
     const handleRouteChange = () => {
-      //setIsLoading(false);
-       closeModal();
+      closeModal();
     };
 
     router.events.on("routeChangeComplete", handleRouteChange);
@@ -77,7 +76,6 @@ export default function ModaleNewEvent({ close }) {
       setIsLoading(false);
     } else {
       toastNotify("success");
-      // closeModal();
       router.replace(`/${formData.slug}/${data.newEvent._id}`);
     }
   };
